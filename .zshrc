@@ -1,0 +1,1 @@
+/Users/niclaskahlmeier/Dropbox/Mackup/.zshrc
