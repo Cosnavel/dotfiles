@@ -1,5 +1,4 @@
 
-
 #Reload stuck touchbar
 alias rtouchbar="sudo pkill "Touch Bar agent"; sudo killall "ControlStrip""
 
@@ -12,19 +11,40 @@ alias oxygenxml='open -a /Applications/Oxygen\ XML\ Author/Oxygen\ XML\ Author.a
 #Deckset
 alias deckset='open -a /Applications/Deckset.app'
 
+
 # List all files colorized in long format
-alias l="ls -lF ${colorflag}"
+#alias l="ls -lF ${colorflag}"
 
 # List all files colorized in long format, excluding . and ..
-alias la="ls -lAF ${colorflag}"
+#alias la="ls -lAF ${colorflag}"
 
 # List only directories
-alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
+#alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
 
 # Always use color output for `ls`
-alias ls="command ls ${colorflag}"
+#alias ls="command ls ${colorflag}"
+#alias ll="/usr/local/opt/coreutils/libexec/gnubin/ls -AhlFo --color --group-directories-first"
 
-alias ll="/usr/local/opt/coreutils/libexec/gnubin/ls -AhlFo --color --group-directories-first"
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+
+#fzf
+alias fzfp="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+
+#rg -> ripgrep search in files
+
+#bat
+#batgrep -> ripgrep with bat
+#batwatch -> bat + entr = watch on file changes
+#batdiff -> bat + delta
+#prettybat -> bat + prettier
+
+#pandoc -> format markup
+
+#tail -> show last lines
 
 # Always enable colored `grep` output
 # Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
@@ -47,6 +67,12 @@ alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[
 # Hide/show all desktop icons (useful when presenting)
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
+# Hide/show Dock (useful when using ubar)
+alias hidedock="defaults write com.apple.dock autohide-delay -float 1000 && defaults write com.apple.dock no-bouncing -bool TRUE && killall Dock"
+alias showdock="defaults write com.apple.dock autohide-delay -float 0.15 && defaults write com.apple.dock no-bouncing -bool FALSE && killall Dock"
+
+
 
 # One of @janmoesen’s ProTip™s
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
@@ -73,6 +99,7 @@ alias dusk="php artisan dusk"
 alias duskf="php artisan dusk --filter"
 
 # PHP
+alias composer="/usr/local/bin/composer"
 alias comp="composer"
 alias compu="composer update"
 alias compr="composer require"
@@ -101,10 +128,13 @@ alias php72="phpv 7.2"
 alias php73="phpv 7.3"
 alias php74="phpv 7.4"
 
+alias usephp73="brew unlink php && brew link --overwrite --force php@7.3"
+alias usephp74="brew unlink php && brew link --overwrite --force php@7.4"
+alias usephp8="brew unlink php && brew link --overwrite --force php@8.0"
 
 # JS
-alias jest="./node_modules/.bin/jest"
-alias mocha="./node_modules/.bin/mocha"
+alias jestl="./node_modules/.bin/jest"
+alias mochal="./node_modules/.bin/mocha"
 alias npm-update="npx ncu --dep prod --dep dev --upgrade";
 alias yarn-update="yarn upgrade-interactive --latest";
 
@@ -160,19 +190,22 @@ alias force="git push --force"
 alias nah='git reset --hard; git clean -df'
 alias pop="git stash pop"
 alias pull="git pull"
+alias pullauh="git pull --allow-unrelated-histories"
 alias push="git push"
 alias resolve="git add . && git commit --no-edit"
 alias stash="git stash -u"
 alias unstage="git restore --staged ."
 alias wip="commit wip"
+alias grmcache="git rm -r --cached ."
 alias gityolo='git add . && git commit -m "$(curl -s http://whatthecommit.com/index.txt)";'
 
+alias act-php='act -P ubuntu-latest=shivammathur/node:latest'
 
 # Redis
 alias flush-redis="redis-cli FLUSHALL"
 
 # VSCode
-alias code='open -a "/Applications/Visual Studio Code.app" "`pwd`"'
+#alias code='open -a "/Applications/Visual Studio Code.app" "`pwd`"'
 
 #Open Laravel DB in Table Plus
 opendb () {
