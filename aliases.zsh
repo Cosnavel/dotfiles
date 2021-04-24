@@ -197,6 +197,7 @@ alias stash="git stash -u"
 alias unstage="git restore --staged ."
 alias wip="commit wip"
 alias grmcache="git rm -r --cached ."
+alias gitrmmerged='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs git branch -d'
 alias gityolo='git add . && git commit -m "$(curl -s http://whatthecommit.com/index.txt)";'
 
 alias act-php='act -P ubuntu-latest=shivammathur/node:latest'
