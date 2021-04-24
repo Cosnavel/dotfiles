@@ -19,6 +19,7 @@ export NVM_DIR=$HOME/.nvm
 export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
 #source $(brew --prefix nvm)/nvm.sh
 export DOTFILES=$HOME/.dotfiles
+export GPG_TTY=$(tty)
 
 alias loadnvm='$(brew --prefix nvm)/nvm.sh'
 
