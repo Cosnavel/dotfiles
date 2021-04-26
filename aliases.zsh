@@ -127,6 +127,7 @@ alias php71="phpv 7.1"
 alias php72="phpv 7.2"
 alias php73="phpv 7.3"
 alias php74="phpv 7.4"
+alias php8="phpv 8.0"
 
 alias usephp73="brew unlink php && brew link --overwrite --force php@7.3"
 alias usephp74="brew unlink php && brew link --overwrite --force php@7.4"
