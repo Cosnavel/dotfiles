@@ -92,11 +92,13 @@ alias hostfile="sudo vi /etc/hosts"
 
 #Laravel
 alias art="php artisan"
+alias cmnn="comp i && mfs && npm i && npm run dev"
 alias mfs="php artisan migrate:fresh --seed"
 alias seed="php artisan db:seed"
-alias laravel-ide-helper="composer require --dev barryvdh/laravel-ide-helper"
+alias laravel-ide-helper="composer require --dev barryvdh/laravel-ide-helper && art ide-helper:generate "
 alias dusk="php artisan dusk"
 alias duskf="php artisan dusk --filter"
+alias pestf="pest --filter"
 
 # PHP
 alias composer="/usr/local/bin/composer"
@@ -128,10 +130,12 @@ alias php72="phpv 7.2"
 alias php73="phpv 7.3"
 alias php74="phpv 7.4"
 alias php8="phpv 8.0"
+alias php81="phpv 8.1"
 
 alias usephp73="brew unlink php && brew link --overwrite --force php@7.3"
 alias usephp74="brew unlink php && brew link --overwrite --force php@7.4"
 alias usephp8="brew unlink php && brew link --overwrite --force php@8.0"
+alias usephp81="brew unlink php && brew link --overwrite --force php@8.1"
 
 # JS
 alias jestl="./node_modules/.bin/jest"
