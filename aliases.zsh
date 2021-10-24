@@ -131,11 +131,13 @@ alias php73="phpv 7.3"
 alias php74="phpv 7.4"
 alias php8="phpv 8.0"
 alias php81="phpv 8.1"
+alias php82="phpv 8.2"
 
 alias usephp73="brew unlink php && brew link --overwrite --force php@7.3"
 alias usephp74="brew unlink php && brew link --overwrite --force php@7.4"
 alias usephp8="brew unlink php && brew link --overwrite --force php@8.0"
 alias usephp81="brew unlink php && brew link --overwrite --force php@8.1"
+alias usephp82="brew unlink php && brew link --overwrite --force php@8.2"
 
 # JS
 alias jestl="./node_modules/.bin/jest"
