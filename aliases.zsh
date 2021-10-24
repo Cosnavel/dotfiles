@@ -68,9 +68,25 @@ alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
+# Hide/show dock (useful when presenting)
+alias hidedock="defaults write com.apple.dock autohide-delay -float 1000; killall Dock"
+alias showdock="defaults delete com.apple.dock autohide-delay; killall Dock"
+
 # Hide/show Dock (useful when using ubar)
 alias hidedock="defaults write com.apple.dock autohide-delay -float 1000 && defaults write com.apple.dock no-bouncing -bool TRUE && killall Dock"
 alias showdock="defaults write com.apple.dock autohide-delay -float 0.15 && defaults write com.apple.dock no-bouncing -bool FALSE && killall Dock"
+
+# Pump Shotcuts Hackintosh only
+alias pumpstatus="liquidctl status"
+alias pumpspeed="liquidctl set pump speed"
+alias pumpmin="liquidctl set pump speed 20"
+alias pumpmax="liquidctl set pump speed 100"
+alias pumpcolor="liquidctl set sync color fixed"
+alias pumpcolordefault="liquidctl set sync color fixed"
+alias pumpcolorpulse="liquidctl set sync color fading 0027ed"
+alias pumpcolorpulsedefault="liquidctl set sync color fading 0027ed"
+alias pumpcolorfade="liquidctl set sync color fading"
+alias pumpcolorfadedefault="liquidctl set sync color fading 0027ed bd1dff"
 
 
 
@@ -83,7 +99,7 @@ done
 alias copyssh="pbcopy < $HOME/.ssh/id_rsa.pub"
 alias reloadshell="source $HOME/.zshrc"
 alias flushdns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder"
-alias phpstorm='open -a /Applications/PhpStorm.app "`pwd`"'
+alias phpstorm='open -na "PhpStorm.app" "`pwd`"'
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias c="clear"
 alias htdocs="cd /Applications/XAMPP/xamppfiles/htdocs"
