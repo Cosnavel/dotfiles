@@ -76,6 +76,8 @@ alias showdock="defaults delete com.apple.dock autohide-delay; killall Dock"
 alias hidedock="defaults write com.apple.dock autohide-delay -float 1000 && defaults write com.apple.dock no-bouncing -bool TRUE && killall Dock"
 alias showdock="defaults write com.apple.dock autohide-delay -float 0.15 && defaults write com.apple.dock no-bouncing -bool FALSE && killall Dock"
 
+alias userosetta="arch -x86_64 zsh"
+
 # Pump Shotcuts Hackintosh only
 alias pumpstatus="liquidctl status"
 alias pumpspeed="liquidctl set pump speed"
@@ -117,7 +119,8 @@ alias duskf="php artisan dusk --filter"
 alias pestf="pest --filter"
 
 # PHP
-alias composer="/usr/local/bin/composer"
+# alias composer="/usr/local/bin/composer"
+alias composer="/opt/homebrew/bin/composer"
 alias comp="composer"
 alias compu="composer update"
 alias compr="composer require"
@@ -125,6 +128,11 @@ alias compi="composer install"
 alias compda="composer dump-autoload -o"
 alias compfresh="rm -rf vendor/ composer.lock && composer i"
 alias phpunitw="phpunit-watcher watch"
+alias pestw="pest --watch"
+alias pestp="pest --parallel"
+alias pestpw="pest --watch --parallel"
+alias pestpw="pest --watch --parallel"
+alias pestd="pest --order-by=defects --stop-on-defect"
 #alias phpunit="vendor/bin/phpunit"
 #alias pest="vendor/bin/pest"
 
@@ -145,7 +153,7 @@ alias php71="phpv 7.1"
 alias php72="phpv 7.2"
 alias php73="phpv 7.3"
 alias php74="phpv 7.4"
-alias php8="phpv 8.0"
+alias php80="phpv 8.0"
 alias php81="phpv 8.1"
 alias php82="phpv 8.2"
 
@@ -154,6 +162,8 @@ alias usephp74="brew unlink php && brew link --overwrite --force php@7.4"
 alias usephp8="brew unlink php && brew link --overwrite --force php@8.0"
 alias usephp81="brew unlink php && brew link --overwrite --force php@8.1"
 alias usephp82="brew unlink php && brew link --overwrite --force php@8.2"
+
+alias expose="/opt/homebrew/Cellar/php@8.0/8.0.13/bin/php ~/.composer/vendor/bin/expose"
 
 # JS
 alias jestl="./node_modules/.bin/jest"

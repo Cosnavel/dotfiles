@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+. "$HOME/.fig/shell/zshrc.pre.zsh"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 export PATH="$HOME/.composer/vendor/bin:$PATH"
@@ -17,11 +19,13 @@ export PATH=/Users/niclaskahlmeier/Library/Android/sdk/platform-tools:$PATH
 # export PATH="./vendor/bin:$PATH"
 export NVM_DIR=$HOME/.nvm
 export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
-#source $(brew --prefix nvm)/nvm.sh
+
+# source $(brew --prefix nvm)/nvm.sh
+# alias loadnvm='$(brew --prefix nvm)/nvm.sh'
+
 export DOTFILES=$HOME/.dotfiles
 export GPG_TTY=$(tty)
 
-alias loadnvm='$(brew --prefix nvm)/nvm.sh'
 
 
 # Path to your oh-my-zsh installation.
@@ -45,6 +49,8 @@ export PATH="$GEM_HOME/bin:$PATH"
 
 # Spaceship Promt
 eval "$(starship init zsh)"
+# fnm node manager
+# eval "$(fnm env)"
 
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_USE_ASYNC=true
@@ -144,3 +150,11 @@ source $ZSH/oh-my-zsh.sh
 #source /Users/niclaskahlmeier/.dotfiles/plugins/zsh-autocomplete//zsh-autocomplete.plugin.zsh
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 unset zle_bracketed_paste
+
+[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
+export PATH="/opt/homebrew/bin:$PATH"
+
+export HOMEBREW_NO_AUTO_UPDATE=1
+
+# Fig post block. Keep at the bottom of this file.
+. "$HOME/.fig/shell/zshrc.post.zsh"
