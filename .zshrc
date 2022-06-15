@@ -1,27 +1,38 @@
+# Debugging
+# zmodload zsh/zprof
+
 # Fig pre block. Keep at the top of this file.
 . "$HOME/.fig/shell/zshrc.pre.zsh"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Composer
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 # export PATH="$PATH:$HOME/.composer/vendor/bin"
+# export PATH="./vendor/bin:$PATH"
 
+# Node & NPM
 export PATH="$HOME/.node/bin:$PATH"
 export PATH="node_modules/.bin:vendor/bin:$PATH"
-
-export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/lib/node_modules:$PATH"
+export NODE_PATH='/usr/local/lib/node_modules'
+
+
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+
+# XDebug
 export XDEBUG_CONFIG="idekey=VSCODE"
 export XDEBUG_CONFIG="idekey=vscode"
-export NODE_PATH='/usr/local/lib/node_modules'
+
+# Android
 export ANDROID_SDK=/Users/niclaskahlmeier/Library/Android/sdk
 export ANDROID_HOME=/Users/niclaskahlmeier/Library/Android/sdk
 export PATH=/Users/niclaskahlmeier/Library/Android/sdk/platform-tools:$PATH
-# export PATH="./vendor/bin:$PATH"
+
+
+# NVM
 export NVM_DIR=$HOME/.nvm
 export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
-
-# source $(brew --prefix nvm)/nvm.sh
-# alias loadnvm='$(brew --prefix nvm)/nvm.sh'
 
 export DOTFILES=$HOME/.dotfiles
 export GPG_TTY=$(tty)
@@ -36,12 +47,6 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export GEM_HOME=/Users/niclaskahlmeier/.gem
 export PATH="$GEM_HOME/bin:$PATH"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-#ZSH_THEME="agnoster"
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-
 #p10k Prompt
 #ZSH_THEME="powerlevel10k/powerlevel10k"
 # To customize prompt, run `p10k configure` or edit ~/.dotfiles/.p10k.zsh.
@@ -49,6 +54,7 @@ export PATH="$GEM_HOME/bin:$PATH"
 
 # Spaceship Promt
 eval "$(starship init zsh)"
+
 # fnm node manager
 # eval "$(fnm env)"
 
@@ -56,12 +62,6 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#9e9e9e"
 #ZSH_AUTOSUGGEST_COMPLETION_IGNORE="git *"
-
-timezsh() {
-  shell=${1-$SHELL}
-  for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
-}
-
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -108,22 +108,13 @@ timezsh() {
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
 ZSH_CUSTOM=$DOTFILES
-
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -150,9 +141,6 @@ source $ZSH/oh-my-zsh.sh
 #source /Users/niclaskahlmeier/.dotfiles/plugins/zsh-autocomplete//zsh-autocomplete.plugin.zsh
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 unset zle_bracketed_paste
-
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
-export PATH="/opt/homebrew/bin:$PATH"
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 

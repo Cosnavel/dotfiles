@@ -53,7 +53,9 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # Load Node Version Manager
-alias loadnvm=". /usr/local/opt/nvm/nvm.sh"
+alias loadnvm='source $HOME/.nvm/nvm.sh'
+# Load Node Version Manager with Brew
+# alias loadnvm='$(brew --prefix nvm)/nvm.sh'
 
 # Google Chrome
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
