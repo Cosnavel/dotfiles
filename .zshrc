@@ -1,8 +1,6 @@
 # Debugging
 # zmodload zsh/zprof
 
-# Fig pre block. Keep at the top of this file.
-. "$HOME/.fig/shell/zshrc.pre.zsh"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Composer
@@ -54,6 +52,9 @@ export PATH="$GEM_HOME/bin:$PATH"
 
 # Spaceship Promt
 eval "$(starship init zsh)"
+
+# Github Copilot CLI
+eval "$(github-copilot-cli alias -- "$0")"
 
 # fnm node manager
 # eval "$(fnm env)"
@@ -144,5 +145,4 @@ unset zle_bracketed_paste
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 
-# Fig post block. Keep at the bottom of this file.
-. "$HOME/.fig/shell/zshrc.post.zsh"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"

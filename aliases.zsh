@@ -11,6 +11,9 @@ alias oxygenxml='open -a /Applications/Oxygen\ XML\ Author/Oxygen\ XML\ Author.a
 #Deckset
 alias deckset='open -a /Applications/Deckset.app'
 
+# Code Insiders
+alias cs='code-insiders'
+
 
 # List all files colorized in long format
 #alias l="ls -lF ${colorflag}"
@@ -122,7 +125,7 @@ alias pestf="pest --filter"
 
 # PHP
 # alias composer="/usr/local/bin/composer"
-alias composer="/opt/homebrew/bin/composer"
+# alias composer="/opt/homebrew/bin/composer"
 alias comp="composer"
 alias compu="composer update"
 alias compr="composer require"
@@ -164,8 +167,6 @@ alias usephp74="brew unlink php && brew link --overwrite --force php@7.4"
 alias usephp8="brew unlink php && brew link --overwrite --force php@8.0"
 alias usephp81="brew unlink php && brew link --overwrite --force php@8.1"
 alias usephp82="brew unlink php && brew link --overwrite --force php@8.2"
-
-alias expose="/opt/homebrew/Cellar/php@8.0/8.0.13/bin/php ~/.composer/vendor/bin/expose"
 
 # JS
 alias jestl="./node_modules/.bin/jest"
