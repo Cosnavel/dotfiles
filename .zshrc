@@ -14,19 +14,13 @@ export PATH="node_modules/.bin:vendor/bin:$PATH"
 export PATH="/usr/local/lib/node_modules:$PATH"
 export NODE_PATH='/usr/local/lib/node_modules'
 
-
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-
-# XDebug
-export XDEBUG_CONFIG="idekey=VSCODE"
-export XDEBUG_CONFIG="idekey=vscode"
 
 # Android
 export ANDROID_SDK=/Users/niclaskahlmeier/Library/Android/sdk
 export ANDROID_HOME=/Users/niclaskahlmeier/Library/Android/sdk
 export PATH=/Users/niclaskahlmeier/Library/Android/sdk/platform-tools:$PATH
-
 
 # NVM
 export NVM_DIR=$HOME/.nvm
@@ -34,8 +28,6 @@ export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
 
 export DOTFILES=$HOME/.dotfiles
 export GPG_TTY=$(tty)
-
-
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/niclaskahlmeier/.oh-my-zsh"
@@ -45,19 +37,11 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export GEM_HOME=/Users/niclaskahlmeier/.gem
 export PATH="$GEM_HOME/bin:$PATH"
 
-#p10k Prompt
-#ZSH_THEME="powerlevel10k/powerlevel10k"
-# To customize prompt, run `p10k configure` or edit ~/.dotfiles/.p10k.zsh.
-#[[ ! -f ~/.dotfiles/.p10k.zsh ]] || source ~/.dotfiles/.p10k.zsh
-
 # Spaceship Promt
 eval "$(starship init zsh)"
 
 # Github Copilot CLI
 eval "$(github-copilot-cli alias -- "$0")"
-
-# fnm node manager
-# eval "$(fnm env)"
 
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_USE_ASYNC=true
@@ -146,3 +130,27 @@ unset zle_bracketed_paste
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+# Herd injected PHP binary.
+export PATH="/Users/niclaskahlmeier/Library/Application Support/Herd/bin/":$PATH
+export PHP_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/":$PHP_INI_SCAN_DIR
+
+
+# Herd injected PHP 8.3 configuration.
+export HERD_PHP_83_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/83/"
+
+
+# Herd injected PHP 8.2 configuration.
+export HERD_PHP_82_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/82/"
+
+
+# Herd injected PHP 8.1 configuration.
+export HERD_PHP_81_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/81/"
+
+
+# Herd injected PHP 8.0 configuration.
+export HERD_PHP_80_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/80/"
+
+
+# Herd injected PHP 7.4 configuration.
+export HERD_PHP_74_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/74/"
