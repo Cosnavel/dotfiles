@@ -1,10 +1,4 @@
 
-#Reload stuck touchbar
-alias rtouchbar="sudo pkill "Touch Bar agent"; sudo killall "ControlStrip""
-
-#Run Parallels Big Sur Beta
-alias runparallels="export SYSTEM_VERSION_COMPAT=1 && open -a "Parallels Desktop""
-
 #Oxygen XML
 alias oxygenxml='open -a /Applications/Oxygen\ XML\ Author/Oxygen\ XML\ Author.app'
 
@@ -13,6 +7,7 @@ alias deckset='open -a /Applications/Deckset.app'
 
 # Code Insiders
 alias cs='code-insiders'
+alias cursor='cursor'
 
 
 # List all files colorized in long format
@@ -62,8 +57,6 @@ alias loadnvm='source $HOME/.nvm/nvm.sh'
 
 # Google Chrome
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-alias canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
-
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
@@ -95,8 +88,6 @@ alias pumpcolorpulsedefault="liquidctl set sync color fading 0027ed"
 alias pumpcolorfade="liquidctl set sync color fading"
 alias pumpcolorfadedefault="liquidctl set sync color fading 0027ed bd1dff"
 
-
-
 # One of @janmoesen’s ProTip™s
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
 	alias "${method}"="lwp-request -m '${method}'"
@@ -106,22 +97,26 @@ done
 alias copyssh="pbcopy < $HOME/.ssh/id_rsa.pub"
 alias reloadshell="source $HOME/.zshrc"
 alias flushdns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder"
-alias phpstorm='open -na "PhpStorm.app" "`pwd`"'
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias c="clear"
-alias htdocs="cd /Applications/XAMPP/xamppfiles/htdocs"
 
 alias hostfile="sudo vi /etc/hosts"
 
 #Laravel
 alias art="php artisan"
-alias cmnn="comp i && mfs && npm i && npm run dev"
+alias cmnn="comp i && mfs && yarn && yarn dev"
 alias mfs="php artisan migrate:fresh --seed"
 alias seed="php artisan db:seed"
 alias laravel-ide-helper="composer require --dev barryvdh/laravel-ide-helper && art ide-helper:generate "
 alias dusk="php artisan dusk"
 alias duskf="php artisan dusk --filter"
+
 alias pestf="pest --filter"
+alias pestw="pest --watch"
+alias pestp="pest --parallel"
+alias pestpw="pest --watch --parallel"
+alias pestpw="pest --watch --parallel"
+alias pestd="pest --order-by=defects --stop-on-defect"
 
 # PHP
 # alias composer="/usr/local/bin/composer"
@@ -132,48 +127,12 @@ alias compr="composer require"
 alias compi="composer install"
 alias compda="composer dump-autoload -o"
 alias compfresh="rm -rf vendor/ composer.lock && composer i"
-alias phpunitw="phpunit-watcher watch"
-alias pestw="pest --watch"
-alias pestp="pest --parallel"
-alias pestpw="pest --watch --parallel"
-alias pestpw="pest --watch --parallel"
-alias pestd="pest --order-by=defects --stop-on-defect"
-#alias phpunit="vendor/bin/phpunit"
-#alias pest="vendor/bin/pest"
-
-# Switch PHP versions
-phpv() {
-    if [ $1 = "7.4" ]; then
-        valet use php
-    else
-        valet use php@$1
-    fi
-    sed -in "s/128M/512M/g" /usr/local/etc/php/$1/conf.d/php-memory-limits.ini
-    composer global update
-    source ~/.zshrc
-}
-
-alias php70="phpv 7.0"
-alias php71="phpv 7.1"
-alias php72="phpv 7.2"
-alias php73="phpv 7.3"
-alias php74="phpv 7.4"
-alias php80="phpv 8.0"
-alias php81="phpv 8.1"
-alias php82="phpv 8.2"
-
-alias usephp73="brew unlink php && brew link --overwrite --force php@7.3"
-alias usephp74="brew unlink php && brew link --overwrite --force php@7.4"
-alias usephp8="brew unlink php && brew link --overwrite --force php@8.0"
-alias usephp81="brew unlink php && brew link --overwrite --force php@8.1"
-alias usephp82="brew unlink php && brew link --overwrite --force php@8.2"
 
 # JS
 alias jestl="./node_modules/.bin/jest"
 alias mochal="./node_modules/.bin/mocha"
 alias npm-update="npx ncu --dep prod --dep dev --upgrade";
 alias yarn-update="yarn upgrade-interactive --latest";
-
 
 ## npm aliases
 alias ni="npm install";
@@ -202,7 +161,6 @@ alias ypm="echo \"Installing deps without lockfile and ignoring engines\" && yar
 #React
 alias cra='npx create-react-app'
 alias cna='npx create-next-app'
-
 
 # Vagrant
 alias v="vagrant global-status"
@@ -240,9 +198,6 @@ alias act-php='act -P ubuntu-latest=shivammathur/node:latest'
 
 # Redis
 alias flush-redis="redis-cli FLUSHALL"
-
-# VSCode
-#alias code='open -a "/Applications/Visual Studio Code.app" "`pwd`"'
 
 #Open Laravel DB in Table Plus
 opendb () {
