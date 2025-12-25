@@ -125,8 +125,8 @@ alias dusk="php artisan dusk"
 alias duskf="php artisan dusk --filter"
 alias laravel-ide-helper="composer require --dev barryvdh/laravel-ide-helper && art ide-helper:generate"
 
-# Fresh install helper
-alias cmnn="comp i && mfs && yarn && yarn dev"
+# Fresh install helper (composer + migrate + yarn)
+alias cmnn="comp i && mfs && yi && yd"
 
 # =============================================================================
 # Pest (PHP Testing)
@@ -148,33 +148,106 @@ alias compda="composer dump-autoload -o"
 alias compfresh="rm -rf vendor/ composer.lock && composer i"
 
 # =============================================================================
-# NPM
+# Yarn (Primary Package Manager)
 # =============================================================================
-alias ni="npm install"
-alias nrs="npm run start -s --"
-alias nrb="npm run build -s --"
-alias nrd="npm run dev -s --"
-alias nrt="npm run test -s --"
-alias nrtw="npm run test:watch -s --"
-alias nrv="npm run validate -s --"
-alias nrw="npm run watch"
+# Installation
+alias y="yarn"
+alias yi="yarn install"
+alias ya="yarn add"
+alias yad="yarn add --dev"
+alias yrm="yarn remove"
+
+# Run scripts
+alias yr="yarn run"
+alias ys="yarn start"
+alias yb="yarn build"
+alias yd="yarn dev"
+alias yt="yarn test"
+alias ytw="yarn test --watch"
+alias yv="yarn validate"
+alias yw="yarn watch"
+
+# Utilities
+alias yoff="yarn add --offline"
+alias yup="yarn upgrade-interactive --latest"
+alias yfresh="rm -rf node_modules yarn.lock && yarn install && say Yarn is done"
 alias rmn="rm -rf node_modules"
-alias npm-fresh="rm -rf node_modules package-lock.json && npm i && say NPM is done"
-alias npm-update="npx ncu --dep prod --dep dev --upgrade"
-alias nicache="npm install --prefer-offline"
-alias nioff="npm install --offline"
+alias ypm="echo 'Installing deps without lockfile and ignoring engines' && yarn install --no-lockfile --ignore-engines"
+
+# Cache & Offline
+alias ycache="yarn install --prefer-offline"
+alias yioff="yarn install --offline"
 
 # =============================================================================
-# Yarn
+# NPM → Yarn Redirects (muscle memory helpers)
 # =============================================================================
-alias yar="yarn run"
-alias yas="yarn run start"
-alias yab="yarn run build"
-alias yat="yarn run test"
-alias yav="yarn run validate"
-alias yoff="yarn add --offline"
-alias ypm="echo 'Installing deps without lockfile and ignoring engines' && yarn install --no-lockfile --ignore-engines"
-alias yarn-update="yarn upgrade-interactive --latest"
+alias npm="yarn"
+alias ni="yarn install"
+alias nrs="yarn start"
+alias nrb="yarn build"
+alias nrd="yarn dev"
+alias nrt="yarn test"
+
+# =============================================================================
+# Global NPM Packages Management
+# =============================================================================
+# Install all global packages from dotfiles
+npm-globals-install() {
+    local globals_file="$HOME/.dotfiles/npm-globals.txt"
+    if [[ ! -f "$globals_file" ]]; then
+        echo "❌ $globals_file not found"
+        return 1
+    fi
+
+    echo "📦 Installing global npm packages..."
+    local count=0
+    while IFS= read -r package || [[ -n "$package" ]]; do
+        # Skip comments and empty lines
+        [[ "$package" =~ ^#.*$ || -z "$package" ]] && continue
+        echo "  → Installing $package..."
+        npm install -g "$package" --silent
+        ((count++))
+    done < "$globals_file"
+
+    echo "✅ Installed $count global packages!"
+}
+
+# Save current global packages to dotfiles
+npm-globals-save() {
+    local globals_file="$HOME/.dotfiles/npm-globals.txt"
+    local temp_file=$(mktemp)
+
+    echo "📝 Saving global npm packages..."
+
+    # Header
+    cat > "$temp_file" << 'EOF'
+# =============================================================================
+# Global NPM Packages
+# =============================================================================
+# Diese Packages werden global installiert mit: npm-globals-install
+# Liste aktualisieren mit: npm-globals-save
+#
+# Format: package-name (eine pro Zeile)
+# Kommentare mit # werden ignoriert
+# =============================================================================
+
+EOF
+
+    # Get global packages (exclude npm itself)
+    npm list -g --depth=0 --json 2>/dev/null | \
+        jq -r '.dependencies | keys[]' 2>/dev/null | \
+        grep -v "^npm$" | \
+        grep -v "^corepack$" | \
+        sort >> "$temp_file"
+
+    mv "$temp_file" "$globals_file"
+    echo "✅ Saved to $globals_file"
+    echo ""
+    cat "$globals_file"
+}
+
+# List current global packages
+alias npm-globals-list="npm list -g --depth=0"
 
 # =============================================================================
 # JavaScript Testing

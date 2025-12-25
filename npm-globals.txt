@@ -1,0 +1,43 @@
+# =============================================================================
+# Global NPM Packages
+# =============================================================================
+# Diese Packages werden global installiert mit: npm-globals-install
+# Liste aktualisieren mit: npm-globals-save
+#
+# Format: package-name (eine pro Zeile)
+# Kommentare mit # werden ignoriert
+# =============================================================================
+
+# Build Tools
+typescript
+ts-node
+esbuild
+
+# Package Management
+npm-check-updates
+depcheck
+
+# Development Servers
+serve
+http-server
+
+# Code Quality
+eslint
+prettier
+
+# Utilities
+nodemon
+concurrently
+rimraf
+
+# CLI Tools
+tldr
+fkill-cli
+
+# Frameworks CLIs (uncomment as needed)
+# @angular/cli
+# @vue/cli
+# create-react-app
+# @nestjs/cli
+# vercel
+# netlify-cli
