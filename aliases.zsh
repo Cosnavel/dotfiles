@@ -300,7 +300,7 @@ alias gityolo='git add . && git commit -m "$(curl -s http://whatthecommit.com/in
 
 # Git diff functions
 dif() { git diff --color --no-index "$1" "$2" | diff-so-fancy; }
-cdiff() { code --diff "$1" "$2"; }
+vsdiff() { code --diff "$1" "$2"; }
 
 # =============================================================================
 # GitHub Actions
