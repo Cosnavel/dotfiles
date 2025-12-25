@@ -1,0 +1,132 @@
+# =============================================================================
+# Starship Prompt - Fast & Beautiful
+# =============================================================================
+
+# Timeout für Commands (schneller!)
+command_timeout = 500
+
+# Kein Newline vor Prompt
+add_newline = false
+
+# Format - minimal aber informativ
+format = """
+$directory\
+$git_branch\
+$git_status\
+$nodejs\
+$php\
+$python\
+$rust\
+$golang\
+$cmd_duration\
+$line_break\
+$character"""
+
+# =============================================================================
+# Core Modules
+# =============================================================================
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "bold cyan"
+read_only = " 󰌾"
+format = "[$path]($style)[$read_only]($read_only_style) "
+
+[cmd_duration]
+min_time = 2000
+format = "[$duration](bold yellow) "
+show_milliseconds = false
+
+# =============================================================================
+# Git
+# =============================================================================
+
+[git_branch]
+symbol = " "
+style = "bold purple"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+format = '([$all_status$ahead_behind]($style) )'
+style = "bold red"
+conflicted = "="
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?${count}"
+stashed = "📦"
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+deleted = "✘${count}"
+
+# =============================================================================
+# Languages (nur wenn im Projekt)
+# =============================================================================
+
+[nodejs]
+symbol = " "
+format = "[$symbol($version )]($style)"
+detect_files = ["package.json", ".node-version", ".nvmrc"]
+style = "bold green"
+
+[php]
+symbol = " "
+format = "[$symbol($version )]($style)"
+detect_files = ["composer.json", ".php-version", "artisan"]
+style = "bold 147"
+
+[python]
+symbol = " "
+format = "[$symbol($version )]($style)"
+style = "bold yellow"
+
+[rust]
+symbol = " "
+format = "[$symbol($version )]($style)"
+style = "bold 208"
+
+[golang]
+symbol = " "
+format = "[$symbol($version )]($style)"
+style = "bold cyan"
+
+# =============================================================================
+# Disabled (für Speed)
+# =============================================================================
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[azure]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[kubernetes]
+disabled = true
+
+[package]
+disabled = true
+
+[battery]
+disabled = true
+
+[time]
+disabled = true
+
+[username]
+disabled = true
+
+[hostname]
+disabled = true

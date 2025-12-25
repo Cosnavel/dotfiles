@@ -73,6 +73,11 @@ alias showdock="defaults write com.apple.dock autohide-delay -float 0.15 && defa
 alias userosetta="arch -x86_64 zsh"
 
 # =============================================================================
+# Navigation (zoxide)
+# =============================================================================
+alias cdi="cd -i"  # Interactive directory picker
+
+# =============================================================================
 # Quick Commands
 # =============================================================================
 alias copyssh="pbcopy < $HOME/.ssh/id_rsa.pub"
