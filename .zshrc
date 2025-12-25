@@ -1,67 +1,54 @@
 # =============================================================================
-# ZSH Configuration - Optimized
+# ZSH Configuration - SPEED OPTIMIZED
 # =============================================================================
 # Debugging (uncomment to profile startup time)
 # zmodload zsh/zprof
 
 # =============================================================================
-# PATH Configuration
+# PATH Configuration (consolidated for speed)
 # =============================================================================
-# Homebrew (Apple Silicon)
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+typeset -U PATH  # Remove duplicates
 
-# Ruby (Homebrew)
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-
-# PostgreSQL
-export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
-
-# Local binaries
-export PATH="$HOME/.local/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH"
-
-# Composer (PHP)
-export PATH="$HOME/.composer/vendor/bin:$PATH"
-
-# Node modules (local project)
-export PATH="node_modules/.bin:vendor/bin:$PATH"
-
-# RVM
-export PATH="$PATH:$HOME/.rvm/bin"
-export GEM_HOME="$HOME/.gem"
-export PATH="$GEM_HOME/bin:$PATH"
-
-# Bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# All paths in one go (faster than multiple exports)
+export PATH="\
+$HOME/.local/bin:\
+$HOME/bin:\
+/opt/homebrew/bin:\
+/opt/homebrew/sbin:\
+/opt/homebrew/opt/ruby/bin:\
+/opt/homebrew/opt/postgresql@17/bin:\
+$HOME/.composer/vendor/bin:\
+$HOME/.bun/bin:\
+$HOME/.gem/bin:\
+$HOME/.rvm/bin:\
+$HOME/Library/Android/sdk/platform-tools:\
+$HOME/Library/Application Support/Herd/bin:\
+/usr/local/bin:\
+/usr/local/sbin:\
+node_modules/.bin:\
+vendor/bin:\
+$PATH"
 
 # =============================================================================
-# NVM Configuration (Lazy Loading for fast shell startup)
+# NVM Configuration (INSTANT - only loads on 'nvm' command)
 # =============================================================================
 export NVM_DIR="$HOME/.nvm"
-export NVM_LAZY_LOAD=true
-export NVM_COMPLETION=true
-export NVM_AUTO_USE=true
 
-# Fast NVM path loading (for immediate node access before lazy load triggers)
-[[ -s "$NVM_DIR/alias/default" ]] && export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
+# Add default node to PATH instantly (no NVM load needed)
+[[ -s "$NVM_DIR/alias/default" ]] && \
+  export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
 
-# =============================================================================
-# Android SDK
-# =============================================================================
-export ANDROID_SDK="$HOME/Library/Android/sdk"
-export ANDROID_HOME="$ANDROID_SDK"
-export PATH="$ANDROID_SDK/platform-tools:$PATH"
+# Ultra-fast lazy loader - NVM only loads when you actually call 'nvm'
+nvm() {
+  unfunction nvm node npm npx yarn pnpm 2>/dev/null
+  [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
+  nvm "$@"
+}
 
-# =============================================================================
-# Herd (PHP)
-# =============================================================================
-export PATH="$HOME/Library/Application Support/Herd/bin/:$PATH"
-export PHP_INI_SCAN_DIR="$HOME/Library/Application Support/Herd/config/php/:$PHP_INI_SCAN_DIR"
-
-# PHP version-specific configurations
-for php_version in 74 80 81 82 83 84 85; do
-  export "HERD_PHP_${php_version}_INI_SCAN_DIR=$HOME/Library/Application Support/Herd/config/php/${php_version}/"
-done
+# Lazy load for node commands (optional - uncomment if needed)
+# for cmd in node npm npx yarn pnpm; do
+#   eval "$cmd() { unfunction nvm node npm npx yarn pnpm 2>/dev/null; [[ -s \"\$NVM_DIR/nvm.sh\" ]] && source \"\$NVM_DIR/nvm.sh\"; $cmd \"\$@\" }"
+# done
 
 # =============================================================================
 # Environment Variables
@@ -69,12 +56,24 @@ done
 export DOTFILES="$HOME/.dotfiles"
 export GPG_TTY=$(tty)
 export HOMEBREW_NO_AUTO_UPDATE=1
+export ANDROID_SDK="$HOME/Library/Android/sdk"
+export ANDROID_HOME="$ANDROID_SDK"
+export GEM_HOME="$HOME/.gem"
+export BUN_INSTALL="$HOME/.bun"
+
+# Herd PHP
+export PHP_INI_SCAN_DIR="$HOME/Library/Application Support/Herd/config/php/:$PHP_INI_SCAN_DIR"
 
 # =============================================================================
-# Colors & Theming
+# Colors & Theming (CACHED for speed)
 # =============================================================================
-# LS_COLORS (vivid - catppuccin theme)
-export LS_COLORS="$(vivid generate catppuccin-mocha)"
+# LS_COLORS - cached to file for instant load
+_ls_colors_cache="$HOME/.cache/ls_colors"
+if [[ ! -f "$_ls_colors_cache" ]] || [[ $(find "$_ls_colors_cache" -mtime +7 2>/dev/null) ]]; then
+  mkdir -p "$HOME/.cache"
+  vivid generate catppuccin-mocha > "$_ls_colors_cache" 2>/dev/null
+fi
+[[ -f "$_ls_colors_cache" ]] && export LS_COLORS="$(<$_ls_colors_cache)"
 
 # bat theme
 export BAT_THEME="Catppuccin Mocha"
@@ -85,7 +84,7 @@ export FZF_DEFAULT_OPTS=" \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
 --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
 --color=selected-bg:#45475a \
---border='rounded' --border-label='' --preview-window='border-rounded' \
+--border='rounded' --preview-window='border-rounded' \
 --prompt='  ' --marker='󰄴 ' --pointer=' ' \
 --separator='─' --scrollbar='│' --info='right'"
 
@@ -104,35 +103,39 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_CUSTOM="$DOTFILES"
 
-# =============================================================================
-# Autocomplete Configuration (MUST be before plugins load)
-# =============================================================================
-# Minimum chars before showing completions
-zstyle ':autocomplete:*' min-input 2
+# Disable update checks (do manually with: omz update)
+zstyle ':omz:update' mode disabled
 
-# Don't show completion menu automatically on every keystroke
+# Skip compfix checks (faster)
+ZSH_DISABLE_COMPFIX=true
+
+# =============================================================================
+# Completion Configuration (MUST be before plugins)
+# =============================================================================
+# Autocomplete settings
+zstyle ':autocomplete:*' min-input 2
 zstyle ':autocomplete:*' async yes
 zstyle ':autocomplete:*' delay 0.1
-
-# Limit menu size
 zstyle ':autocomplete:*' list-lines 7
-
-# Don't ask "do you wish to see all X possibilities"
 zstyle ':completion:*' list-prompt ''
 zstyle ':completion:*' select-prompt ''
 LISTMAX=9999
 
+# Cache completions
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$HOME/.cache/zsh/compcache"
+
 # =============================================================================
-# Autosuggestions Configuration
+# Plugin Configuration (before loading)
 # =============================================================================
+# Autosuggestions
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6c7086"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_MANUAL_REBIND=true  # Faster
 
-# =============================================================================
-# Syntax Highlighting Colors (Catppuccin)
-# =============================================================================
+# Syntax Highlighting (Catppuccin)
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[command]='fg=#89b4fa,bold'
 ZSH_HIGHLIGHT_STYLES[alias]='fg=#a6e3a1,bold'
@@ -147,11 +150,11 @@ ZSH_HIGHLIGHT_STYLES[redirection]='fg=#f5c2e7'
 ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#f38ba8'
 
 # =============================================================================
-# Plugins
+# Plugins (order matters: syntax-highlighting must be last!)
 # =============================================================================
+# Note: zsh-nvm removed for speed - NVM loads on-demand via function below
 plugins=(
   git
-  zsh-nvm
   zsh-autocomplete
   zsh-autosuggestions
   zsh-syntax-highlighting
@@ -163,47 +166,35 @@ plugins=(
 source "$ZSH/oh-my-zsh.sh"
 
 # =============================================================================
-# Prompt (Starship)
+# Shell Integrations (cached init where possible)
 # =============================================================================
+# Starship prompt
 eval "$(starship init zsh)"
 
-# =============================================================================
-# Shell Integrations
-# =============================================================================
-# zoxide (smart cd replacement)
+# zoxide (smart cd)
 eval "$(zoxide init zsh --cmd cd)"
 
-# atuin (better shell history)
+# atuin (shell history)
 eval "$(atuin init zsh --disable-up-arrow)"
 
-# fzf (fuzzy finder integration)
+# fzf
 source <(fzf --zsh)
 
-# iTerm2 integration
+# Optional integrations (only if present)
 [[ -e "$HOME/.iterm2_shell_integration.zsh" ]] && source "$HOME/.iterm2_shell_integration.zsh"
-
-# Bun completions
 [[ -s "$HOME/.bun/_bun" ]] && source "$HOME/.bun/_bun"
 
-# Fix bracketed paste issues
+# Fix bracketed paste
 unset zle_bracketed_paste
 
 # =============================================================================
 # Aliases
 # =============================================================================
 alias claude="$HOME/.claude/local/claude"
-
-# Quick system info
 alias sysinfo="fastfetch"
 alias fetch="fastfetch"
 
 # =============================================================================
-# Welcome Message (uncomment for greeting)
-# =============================================================================
-# fastfetch --logo small
-
-# =============================================================================
 # End of configuration
 # =============================================================================
-# Debugging (uncomment to see profile results)
 # zprof
