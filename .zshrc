@@ -76,19 +76,23 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_CUSTOM="$DOTFILES"
 
-# Plugins (loaded from $ZSH_CUSTOM/plugins/)
-# - git: Git aliases and functions
-# - zsh-autocomplete: Real-time type-ahead autocompletion
-# - zsh-autosuggestions: Fish-like autosuggestions
-# - zsh-syntax-highlighting: Syntax highlighting (must be last!)
-# - zsh-nvm: Lazy loading NVM for fast shell startup
-plugins=(
-  git
-  zsh-nvm
-  zsh-autocomplete
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-)
+# =============================================================================
+# Autocomplete Configuration (MUST be before plugins load)
+# =============================================================================
+# Minimum chars before showing completions
+zstyle ':autocomplete:*' min-input 2
+
+# Don't show completion menu automatically on every keystroke
+zstyle ':autocomplete:*' async yes
+zstyle ':autocomplete:*' delay 0.1
+
+# Limit menu size
+zstyle ':autocomplete:*' list-lines 7
+
+# Don't ask "do you wish to see all X possibilities"
+zstyle ':completion:*' list-prompt ''
+zstyle ':completion:*' select-prompt ''
+LISTMAX=9999
 
 # =============================================================================
 # Autosuggestions Configuration
@@ -97,6 +101,17 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#9e9e9e"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+# =============================================================================
+# Plugins
+# =============================================================================
+plugins=(
+  git
+  zsh-nvm
+  zsh-autocomplete
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
 
 # =============================================================================
 # Load Oh My Zsh
@@ -111,6 +126,15 @@ eval "$(starship init zsh)"
 # =============================================================================
 # Shell Integrations
 # =============================================================================
+# zoxide (smart cd replacement)
+eval "$(zoxide init zsh --cmd cd)"
+
+# atuin (better shell history)
+eval "$(atuin init zsh --disable-up-arrow)"
+
+# fzf (fuzzy finder integration)
+source <(fzf --zsh)
+
 # iTerm2 integration
 [[ -e "$HOME/.iterm2_shell_integration.zsh" ]] && source "$HOME/.iterm2_shell_integration.zsh"
 

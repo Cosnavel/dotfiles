@@ -14,20 +14,31 @@ alias cs='code-insiders'
 alias cursor='cursor'
 
 # =============================================================================
-# File Listing (using lsd)
+# File Listing (using eza - modern ls)
 # =============================================================================
-alias ls='lsd'
-alias l='ls -l'
-alias la='ls -a'
-alias ll='ls -la'
-alias lla='ls -la'
-alias lt='ls --tree'
+alias ls='eza --icons --group-directories-first'
+alias l='eza -l --icons --group-directories-first'
+alias la='eza -a --icons --group-directories-first'
+alias ll='eza -la --icons --group-directories-first --git'
+alias lla='eza -la --icons --group-directories-first --git'
+alias lt='eza --tree --icons --level=2'
+alias lta='eza --tree --icons --level=2 -a'
+alias ltl='eza --tree --icons --level=3'
 
 # =============================================================================
 # Search & Text Processing
 # =============================================================================
+# fd (fast find replacement)
+alias find='fd'
+
 # Fuzzy finder with bat preview
 alias fzfp="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+
+# Quick file search with preview
+alias f="fd --type f | fzf --preview 'bat --style=numbers --color=always {}'"
+
+# Quick directory jump
+alias d="fd --type d | fzf"
 
 # Colored grep
 alias grep='grep --color=auto'
@@ -156,6 +167,9 @@ alias vrebuild="vagrant destroy --force && vagrant up"
 # =============================================================================
 # Git
 # =============================================================================
+# lazygit (terminal UI for git)
+alias lg="lazygit"
+
 alias gst="git status"
 alias gb="git branch"
 alias gc="git checkout"
