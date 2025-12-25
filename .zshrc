@@ -1,172 +1,130 @@
-# Debugging
+# =============================================================================
+# ZSH Configuration - Optimized
+# =============================================================================
+# Debugging (uncomment to profile startup time)
 # zmodload zsh/zprof
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+# =============================================================================
+# PATH Configuration
+# =============================================================================
+# Homebrew (Apple Silicon)
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 
-# Composer
-export PATH="$HOME/.composer/vendor/bin:$PATH"
-# export PATH="$PATH:$HOME/.composer/vendor/bin"
-# export PATH="./vendor/bin:$PATH"
-
-# Node & NPM
-export PATH="$HOME/.node/bin:$PATH"
-export PATH="node_modules/.bin:vendor/bin:$PATH"
-export PATH="/usr/local/lib/node_modules:$PATH"
-export NODE_PATH='/usr/local/lib/node_modules'
-
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-
-# Android
-export ANDROID_SDK=/Users/niclaskahlmeier/Library/Android/sdk
-export ANDROID_HOME=/Users/niclaskahlmeier/Library/Android/sdk
-export PATH=/Users/niclaskahlmeier/Library/Android/sdk/platform-tools:$PATH
-
-# NVM
-export NVM_DIR=$HOME/.nvm
-export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
-
-export DOTFILES=$HOME/.dotfiles
-export GPG_TTY=$(tty)
-
-# Path to your oh-my-zsh installation.
-export ZSH="/Users/niclaskahlmeier/.oh-my-zsh"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-export GEM_HOME=/Users/niclaskahlmeier/.gem
-export PATH="$GEM_HOME/bin:$PATH"
-
-# Spaceship Promt
-eval "$(starship init zsh)"
-
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-ZSH_AUTOSUGGEST_USE_ASYNC=true
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#9e9e9e"
-#ZSH_AUTOSUGGEST_COMPLETION_IGNORE="git *"
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-#ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=$DOTFILES
-
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-#source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#source /Users/niclaskahlmeier/.dotfiles/plugins/zsh-autocomplete//zsh-autocomplete.plugin.zsh
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-unset zle_bracketed_paste
-
-export HOMEBREW_NO_AUTO_UPDATE=1
-
+# Ruby (Homebrew)
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
-# Herd injected PHP binary.
-export PATH="/Users/niclaskahlmeier/Library/Application Support/Herd/bin/":$PATH
-export PHP_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/":$PHP_INI_SCAN_DIR
+# PostgreSQL
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 
+# Local binaries
+export PATH="$HOME/.local/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
-# Herd injected PHP 8.3 configuration.
-export HERD_PHP_83_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/83/"
+# Composer (PHP)
+export PATH="$HOME/.composer/vendor/bin:$PATH"
 
+# Node modules (local project)
+export PATH="node_modules/.bin:vendor/bin:$PATH"
 
-# Herd injected PHP 8.2 configuration.
-export HERD_PHP_82_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/82/"
+# RVM
+export PATH="$PATH:$HOME/.rvm/bin"
+export GEM_HOME="$HOME/.gem"
+export PATH="$GEM_HOME/bin:$PATH"
 
-
-# Herd injected PHP 8.1 configuration.
-export HERD_PHP_81_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/81/"
-
-
-# Herd injected PHP 8.0 configuration.
-export HERD_PHP_80_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/80/"
-
-
-# Herd injected PHP 7.4 configuration.
-export HERD_PHP_74_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/74/"
-
-
-# Herd injected PHP 8.4 configuration.
-export HERD_PHP_84_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/84/"
-
-# bun completions
-[ -s "/Users/niclaskahlmeier/.bun/_bun" ] && source "/Users/niclaskahlmeier/.bun/_bun"
-
-# bun
+# Bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-alias claude="/Users/niclaskahlmeier/.claude/local/claude"
-export PATH="$HOME/.local/bin:$PATH"
+# =============================================================================
+# NVM Configuration (Lazy Loading for fast shell startup)
+# =============================================================================
+export NVM_DIR="$HOME/.nvm"
+export NVM_LAZY_LOAD=true
+export NVM_COMPLETION=true
+export NVM_AUTO_USE=true
 
+# Fast NVM path loading (for immediate node access before lazy load triggers)
+[[ -s "$NVM_DIR/alias/default" ]] && export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
 
-# Herd injected PHP 8.5 configuration.
-export HERD_PHP_85_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/85/"
-export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+# =============================================================================
+# Android SDK
+# =============================================================================
+export ANDROID_SDK="$HOME/Library/Android/sdk"
+export ANDROID_HOME="$ANDROID_SDK"
+export PATH="$ANDROID_SDK/platform-tools:$PATH"
+
+# =============================================================================
+# Herd (PHP)
+# =============================================================================
+export PATH="$HOME/Library/Application Support/Herd/bin/:$PATH"
+export PHP_INI_SCAN_DIR="$HOME/Library/Application Support/Herd/config/php/:$PHP_INI_SCAN_DIR"
+
+# PHP version-specific configurations
+for php_version in 74 80 81 82 83 84 85; do
+  export "HERD_PHP_${php_version}_INI_SCAN_DIR=$HOME/Library/Application Support/Herd/config/php/${php_version}/"
+done
+
+# =============================================================================
+# Environment Variables
+# =============================================================================
+export DOTFILES="$HOME/.dotfiles"
+export GPG_TTY=$(tty)
+export HOMEBREW_NO_AUTO_UPDATE=1
+
+# =============================================================================
+# Oh My Zsh Configuration
+# =============================================================================
+export ZSH="$HOME/.oh-my-zsh"
+export ZSH_CUSTOM="$DOTFILES"
+
+# Plugins (loaded from $ZSH_CUSTOM/plugins/)
+# - git: Git aliases and functions
+# - zsh-autosuggestions: Fish-like autosuggestions
+# - zsh-syntax-highlighting: Syntax highlighting (must be last!)
+# - zsh-nvm: Lazy loading NVM for fast shell startup
+plugins=(
+  git
+  zsh-nvm
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
+
+# =============================================================================
+# Autosuggestions Configuration
+# =============================================================================
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_USE_ASYNC=true
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#9e9e9e"
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+# =============================================================================
+# Load Oh My Zsh
+# =============================================================================
+source "$ZSH/oh-my-zsh.sh"
+
+# =============================================================================
+# Prompt (Starship)
+# =============================================================================
+eval "$(starship init zsh)"
+
+# =============================================================================
+# Shell Integrations
+# =============================================================================
+# iTerm2 integration
+[[ -e "$HOME/.iterm2_shell_integration.zsh" ]] && source "$HOME/.iterm2_shell_integration.zsh"
+
+# Bun completions
+[[ -s "$HOME/.bun/_bun" ]] && source "$HOME/.bun/_bun"
+
+# Fix bracketed paste issues
+unset zle_bracketed_paste
+
+# =============================================================================
+# Aliases
+# =============================================================================
+alias claude="$HOME/.claude/local/claude"
+
+# =============================================================================
+# End of configuration
+# =============================================================================
+# Debugging (uncomment to see profile results)
+# zprof
