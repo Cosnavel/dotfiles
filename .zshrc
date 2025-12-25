@@ -40,9 +40,6 @@ export PATH="$GEM_HOME/bin:$PATH"
 # Spaceship Promt
 eval "$(starship init zsh)"
 
-# Github Copilot CLI
-eval "$(github-copilot-cli alias -- "$0")"
-
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#9e9e9e"
@@ -154,3 +151,22 @@ export HERD_PHP_80_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Supp
 
 # Herd injected PHP 7.4 configuration.
 export HERD_PHP_74_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/74/"
+
+
+# Herd injected PHP 8.4 configuration.
+export HERD_PHP_84_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/84/"
+
+# bun completions
+[ -s "/Users/niclaskahlmeier/.bun/_bun" ] && source "/Users/niclaskahlmeier/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+alias claude="/Users/niclaskahlmeier/.claude/local/claude"
+export PATH="$HOME/.local/bin:$PATH"
+
+
+# Herd injected PHP 8.5 configuration.
+export HERD_PHP_85_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/85/"
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
