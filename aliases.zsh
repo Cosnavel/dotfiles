@@ -9,9 +9,38 @@ alias oxygenxml='open -a /Applications/Oxygen\ XML\ Author/Oxygen\ XML\ Author.a
 alias deckset='open -a /Applications/Deckset.app'
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 
-# Editors
+# Editors - Cursor IDE
+alias c.='cursor .'                    # Open current dir
+alias cn='cursor -n'                   # New window
+alias cr='cursor -r'                   # Reuse window
+alias ca='cursor --add'                # Add folder to workspace
+alias cdiff='cursor --diff'            # Diff two files
+alias cw='cursor --wait'               # Wait for close
+alias ce='cursor --goto'               # Go to file:line:column
+
+# Cursor project shortcuts
+alias cproj='cursor ~/Projects'
+alias cdot='cursor ~/.dotfiles'
+
+# =============================================================================
+# Cursor Agent (AI Terminal)
+# =============================================================================
+alias ai='cursor-agent'                # Start interactive AI session
+alias aic='cursor-agent'               # Alias for cursor-agent
+alias aip='cursor-agent -p'            # Non-interactive (print mode)
+alias ail='cursor-agent ls'            # List previous chats
+alias air='cursor-agent resume'        # Resume last conversation
+alias aiu='cursor-agent update'        # Update cursor-agent
+
+# Quick AI tasks
+alias aifix='cursor-agent "find and fix bugs in this code"'
+alias aireview='cursor-agent "review this code for improvements"'
+alias aitest='cursor-agent "write tests for this code"'
+alias aidocs='cursor-agent "add documentation to this code"'
+alias airefactor='cursor-agent "refactor this code for better readability"'
+
+# Code Insiders (legacy)
 alias cs='code-insiders'
-alias cursor='cursor'
 
 # =============================================================================
 # File Listing (using eza - modern ls)
@@ -224,6 +253,27 @@ alias pumpcolorfade="liquidctl set sync color fading 0027ed bd1dff"
 # =============================================================================
 # Functions
 # =============================================================================
+
+# Fuzzy open file in Cursor
+cf() {
+    local file
+    file=$(fd --type f --hidden --exclude .git | fzf --preview 'bat --style=numbers --color=always {}')
+    [[ -n "$file" ]] && cursor "$file"
+}
+
+# Fuzzy open directory in Cursor
+cfd() {
+    local dir
+    dir=$(fd --type d --hidden --exclude .git | fzf --preview 'eza --tree --level=2 --icons {}')
+    [[ -n "$dir" ]] && cursor "$dir"
+}
+
+# Open recent Cursor projects (from zoxide)
+cz() {
+    local dir
+    dir=$(zoxide query -l | fzf --preview 'eza --tree --level=2 --icons {}')
+    [[ -n "$dir" ]] && cursor "$dir"
+}
 
 # Open Laravel DB in TablePlus
 opendb() {
