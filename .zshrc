@@ -71,6 +71,34 @@ export GPG_TTY=$(tty)
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 # =============================================================================
+# Colors & Theming
+# =============================================================================
+# LS_COLORS (vivid - catppuccin theme)
+export LS_COLORS="$(vivid generate catppuccin-mocha)"
+
+# bat theme
+export BAT_THEME="Catppuccin Mocha"
+
+# fzf theme (Catppuccin Mocha)
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+--color=selected-bg:#45475a \
+--border='rounded' --border-label='' --preview-window='border-rounded' \
+--prompt='  ' --marker='󰄴 ' --pointer=' ' \
+--separator='─' --scrollbar='│' --info='right'"
+
+# man pages colors
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
+
+# =============================================================================
 # Oh My Zsh Configuration
 # =============================================================================
 export ZSH="$HOME/.oh-my-zsh"
@@ -99,8 +127,24 @@ LISTMAX=9999
 # =============================================================================
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_USE_ASYNC=true
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#9e9e9e"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6c7086"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+# =============================================================================
+# Syntax Highlighting Colors (Catppuccin)
+# =============================================================================
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[command]='fg=#89b4fa,bold'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=#a6e3a1,bold'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=#cba6f7,bold'
+ZSH_HIGHLIGHT_STYLES[function]='fg=#89b4fa,bold'
+ZSH_HIGHLIGHT_STYLES[path]='fg=#f9e2af,underline'
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=#f5c2e7'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#a6e3a1'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#a6e3a1'
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=#f38ba8'
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=#f5c2e7'
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#f38ba8'
 
 # =============================================================================
 # Plugins
@@ -148,6 +192,15 @@ unset zle_bracketed_paste
 # Aliases
 # =============================================================================
 alias claude="$HOME/.claude/local/claude"
+
+# Quick system info
+alias sysinfo="fastfetch"
+alias fetch="fastfetch"
+
+# =============================================================================
+# Welcome Message (uncomment for greeting)
+# =============================================================================
+# fastfetch --logo small
 
 # =============================================================================
 # End of configuration

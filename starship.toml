@@ -1,47 +1,83 @@
 # =============================================================================
-# Starship Prompt - Fast & Beautiful
+# Starship Prompt - Catppuccin Mocha Theme
 # =============================================================================
 
 # Timeout für Commands (schneller!)
 command_timeout = 500
 
 # Kein Newline vor Prompt
-add_newline = false
+add_newline = true
 
-# Format - minimal aber informativ
+# Format - clean und informativ
 format = """
+$os\
 $directory\
 $git_branch\
 $git_status\
+$git_metrics\
+$fill\
 $nodejs\
 $php\
 $python\
 $rust\
 $golang\
+$docker_context\
 $cmd_duration\
 $line_break\
 $character"""
+
+# Right side
+right_format = """$time"""
 
 # =============================================================================
 # Core Modules
 # =============================================================================
 
+[os]
+disabled = false
+style = "fg:#cba6f7"
+format = "[$symbol ]($style)"
+
+[os.symbols]
+Macos = ""
+Linux = "󰌽"
+Windows = "󰍲"
+
+[fill]
+symbol = " "
+
 [character]
-success_symbol = "[❯](bold green)"
-error_symbol = "[❯](bold red)"
-vimcmd_symbol = "[❮](bold green)"
+success_symbol = "[❯](bold #a6e3a1)"
+error_symbol = "[❯](bold #f38ba8)"
+vimcmd_symbol = "[❮](bold #a6e3a1)"
 
 [directory]
 truncation_length = 3
 truncate_to_repo = true
-style = "bold cyan"
+style = "bold #89b4fa"
 read_only = " 󰌾"
+read_only_style = "#f38ba8"
 format = "[$path]($style)[$read_only]($read_only_style) "
 
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Developer" = "󰲋 "
+"Projects" = "󰲋 "
+
 [cmd_duration]
-min_time = 2000
-format = "[$duration](bold yellow) "
+min_time = 1000
+format = "[󱎫 $duration]($style) "
+style = "bold #f9e2af"
 show_milliseconds = false
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "fg:#585b70"
+format = "[$time]($style)"
 
 # =============================================================================
 # Git
@@ -49,53 +85,66 @@ show_milliseconds = false
 
 [git_branch]
 symbol = " "
-style = "bold purple"
-format = "[$symbol$branch]($style) "
+style = "bold #cba6f7"
+format = "[$symbol$branch(:$remote_branch)]($style) "
 
 [git_status]
 format = '([$all_status$ahead_behind]($style) )'
-style = "bold red"
-conflicted = "="
-ahead = "⇡${count}"
-behind = "⇣${count}"
-diverged = "⇕⇡${ahead_count}⇣${behind_count}"
-untracked = "?${count}"
-stashed = "📦"
-modified = "!${count}"
-staged = "+${count}"
-renamed = "»${count}"
-deleted = "✘${count}"
+style = "bold #f38ba8"
+conflicted = " "
+ahead = "⇡${count} "
+behind = "⇣${count} "
+diverged = "⇕⇡${ahead_count}⇣${behind_count} "
+untracked = "?${count} "
+stashed = "󰏗 "
+modified = "!${count} "
+staged = "+${count} "
+renamed = "»${count} "
+deleted = "✘${count} "
+
+[git_metrics]
+disabled = false
+added_style = "bold #a6e3a1"
+deleted_style = "bold #f38ba8"
+format = '([+$added]($added_style) )([-$deleted]($deleted_style) )'
 
 # =============================================================================
-# Languages (nur wenn im Projekt)
+# Languages
 # =============================================================================
 
 [nodejs]
 symbol = " "
 format = "[$symbol($version )]($style)"
 detect_files = ["package.json", ".node-version", ".nvmrc"]
-style = "bold green"
+style = "bold #a6e3a1"
 
 [php]
 symbol = " "
 format = "[$symbol($version )]($style)"
 detect_files = ["composer.json", ".php-version", "artisan"]
-style = "bold 147"
+style = "bold #b4befe"
 
 [python]
 symbol = " "
 format = "[$symbol($version )]($style)"
-style = "bold yellow"
+style = "bold #f9e2af"
 
 [rust]
-symbol = " "
+symbol = "󱘗 "
 format = "[$symbol($version )]($style)"
-style = "bold 208"
+style = "bold #fab387"
 
 [golang]
 symbol = " "
 format = "[$symbol($version )]($style)"
-style = "bold cyan"
+style = "bold #89dceb"
+
+[docker_context]
+symbol = "󰡨 "
+format = "[$symbol$context]($style) "
+style = "bold #89b4fa"
+only_with_files = true
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
 
 # =============================================================================
 # Disabled (für Speed)
@@ -110,9 +159,6 @@ disabled = true
 [azure]
 disabled = true
 
-[docker_context]
-disabled = true
-
 [kubernetes]
 disabled = true
 
@@ -120,9 +166,6 @@ disabled = true
 disabled = true
 
 [battery]
-disabled = true
-
-[time]
 disabled = true
 
 [username]
