@@ -78,12 +78,14 @@ export ZSH_CUSTOM="$DOTFILES"
 
 # Plugins (loaded from $ZSH_CUSTOM/plugins/)
 # - git: Git aliases and functions
+# - zsh-autocomplete: Real-time type-ahead autocompletion
 # - zsh-autosuggestions: Fish-like autosuggestions
 # - zsh-syntax-highlighting: Syntax highlighting (must be last!)
 # - zsh-nvm: Lazy loading NVM for fast shell startup
 plugins=(
   git
   zsh-nvm
+  zsh-autocomplete
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
