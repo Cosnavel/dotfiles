@@ -110,20 +110,16 @@ zstyle ':omz:update' mode disabled
 ZSH_DISABLE_COMPFIX=true
 
 # =============================================================================
-# Completion Configuration (MUST be before plugins)
+# Completion Configuration
 # =============================================================================
-# Autocomplete settings
-zstyle ':autocomplete:*' min-input 2
-zstyle ':autocomplete:*' async yes
-zstyle ':autocomplete:*' delay 0.1
-zstyle ':autocomplete:*' list-lines 7
+# Cache completions for speed
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$HOME/.cache/zsh/compcache"
+
+# Don't ask "do you wish to see all"
 zstyle ':completion:*' list-prompt ''
 zstyle ':completion:*' select-prompt ''
 LISTMAX=9999
-
-# Cache completions
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "$HOME/.cache/zsh/compcache"
 
 # =============================================================================
 # Plugin Configuration (before loading)
@@ -152,10 +148,8 @@ ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#f38ba8'
 # =============================================================================
 # Plugins (order matters: syntax-highlighting must be last!)
 # =============================================================================
-# Note: zsh-nvm removed for speed - NVM loads on-demand via function below
 plugins=(
   git
-  zsh-autocomplete
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
@@ -166,26 +160,36 @@ plugins=(
 source "$ZSH/oh-my-zsh.sh"
 
 # =============================================================================
-# Shell Integrations (cached init where possible)
+# Shell Integrations (CACHED for instant load)
 # =============================================================================
-# Starship prompt
-eval "$(starship init zsh)"
+_zsh_cache="$HOME/.cache/zsh"
+[[ -d "$_zsh_cache" ]] || mkdir -p "$_zsh_cache"
 
-# zoxide (smart cd)
-eval "$(zoxide init zsh --cmd cd)"
+# Cache shell integrations (regenerate weekly or if missing)
+_cache_init() {
+  local name=$1 cmd=$2 cache="$_zsh_cache/${name}.zsh"
+  if [[ ! -f "$cache" ]] || [[ $(find "$cache" -mtime +7 2>/dev/null) ]]; then
+    eval "$cmd" > "$cache" 2>/dev/null
+  fi
+  source "$cache"
+}
 
-# atuin (shell history)
-eval "$(atuin init zsh --disable-up-arrow)"
+_cache_init "starship" "starship init zsh"
+_cache_init "zoxide" "zoxide init zsh --cmd cd"
+_cache_init "atuin" "atuin init zsh --disable-up-arrow"
+_cache_init "fzf" "fzf --zsh"
 
-# fzf
-source <(fzf --zsh)
+unfunction _cache_init
 
-# Optional integrations (only if present)
-[[ -e "$HOME/.iterm2_shell_integration.zsh" ]] && source "$HOME/.iterm2_shell_integration.zsh"
+# iTerm2 integration (disabled for speed - uncomment if needed)
+# [[ -e "$HOME/.iterm2_shell_integration.zsh" ]] && source "$HOME/.iterm2_shell_integration.zsh"
 [[ -s "$HOME/.bun/_bun" ]] && source "$HOME/.bun/_bun"
 
 # Fix bracketed paste
 unset zle_bracketed_paste
+
+# Disable history expansion with ! (fixes issues with ! in commands)
+setopt NO_BANG_HIST
 
 # =============================================================================
 # Aliases

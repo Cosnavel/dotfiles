@@ -3,7 +3,10 @@
 # =============================================================================
 
 # Timeout für Commands (schneller!)
-command_timeout = 500
+command_timeout = 200
+
+# Scan timeout for large repos
+scan_timeout = 10
 
 # Kein Newline vor Prompt
 add_newline = true
@@ -103,10 +106,7 @@ renamed = "»${count} "
 deleted = "✘${count} "
 
 [git_metrics]
-disabled = false
-added_style = "bold #a6e3a1"
-deleted_style = "bold #f38ba8"
-format = '([+$added]($added_style) )([-$deleted]($deleted_style) )'
+disabled = true  # Disabled for speed (can be slow in large repos)
 
 # =============================================================================
 # Languages
