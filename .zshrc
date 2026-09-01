@@ -15,6 +15,7 @@ $HOME/.local/bin:\
 $HOME/bin:\
 /opt/homebrew/bin:\
 /opt/homebrew/sbin:\
+/opt/homebrew/share/google-cloud-sdk/bin:\
 /opt/homebrew/opt/ruby/bin:\
 /opt/homebrew/opt/postgresql@17/bin:\
 $HOME/.composer/vendor/bin:\
@@ -195,6 +196,14 @@ setopt NO_BANG_HIST
 # Aliases
 # =============================================================================
 alias claude="$HOME/.claude/local/claude"
+
+# Claude Code multi-account launchers: claude-main, claude-kettner-1 .. claude-kettner-7
+# (separate accounts via CLAUDE_CONFIG_DIR; skills mirrored via ~/.claude-shared/skills)
+export PATH="$HOME/.claude-tools/bin:$PATH"
+
+# Trust Nimbalyst git-worktrees for Claude Code in all accounts (pass a repo path to scope)
+alias trust-worktrees="python3 $HOME/.claude-tools/trust_worktrees.py"
+
 alias sysinfo="fastfetch"
 alias fetch="fastfetch"
 
@@ -202,3 +211,42 @@ alias fetch="fastfetch"
 # End of configuration
 # =============================================================================
 # zprof
+
+
+# Herd injected PHP 8.4 configuration.
+export HERD_PHP_84_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/84/"
+
+
+# Herd injected PHP 8.5 configuration.
+export HERD_PHP_85_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/85/"
+
+
+# Herd injected PHP 8.3 configuration.
+export HERD_PHP_83_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/83/"
+
+
+# Herd injected PHP 8.2 configuration.
+export HERD_PHP_82_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/82/"
+
+
+# Herd injected PHP 8.1 configuration.
+export HERD_PHP_81_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/81/"
+
+
+# Herd injected PHP 8.0 configuration.
+export HERD_PHP_80_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/80/"
+
+
+# Herd injected PHP 7.4 configuration.
+export HERD_PHP_74_INI_SCAN_DIR="/Users/niclaskahlmeier/Library/Application Support/Herd/config/php/74/"
+
+# bun completions
+[ -s "/Users/niclaskahlmeier/.bun/_bun" ] && source "/Users/niclaskahlmeier/.bun/_bun"
+
+
+# Herd injected PHP binary.
+export PATH="/Users/niclaskahlmeier/Library/Application Support/Herd/bin/":$PATH
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/niclaskahlmeier/.lmstudio/bin"
+# End of LM Studio CLI section

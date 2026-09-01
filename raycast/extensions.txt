@@ -1,0 +1,46 @@
+1password — 1Password
+apple-notes — Apple Notes
+audio-device — Set Audio Device
+authy — Authy - Twilio App
+brew — Brew
+brew-services — Manage Services
+cal-com-share-meeting-links — Cal.com
+chatgpt — ChatGPT
+cleanshotx — CleanShot X
+clockify — Clockify
+coffee — Coffee
+color-picker — Color Picker
+dash — Dash
+figma-files-raycast-extension — Figma File Search
+git-repos — Git Repos
+github — GitHub
+github-repository-search — GitHub Repository Search
+google-chrome — Google Chrome
+google-search — Google Search
+imessage-2fa — 2FA Code Finder
+kill-process — Kill Process
+laravel-docs — Laravel Docs
+linear — Linear
+lorem-ipsum — Lorem Ipsum
+music — Music
+obsidian — Obsidian
+openai-gpt — OpenAI GPT
+party-parrot — Party Parrot
+pomodoro — Pomodoro
+port-manager — Port Manager
+promptlab — PromptLab
+radix — Radix
+raindrop-io — Raindrop.io
+ray-so — ray.so
+search-github-stars — GitHub Stars
+search-mdn — Search MDN
+search-npm — Search npm Packages
+slack — Slack
+slack-status — Slack Status
+speedtest — Speedtest
+stackoverflow — Search Stack Exchange Sites
+tableplus — TablePlus
+tailwindcss — Tailwind CSS
+timers — Timers
+translate — Google Translate
+vscode-project-manager — Visual Studio Code - Project Manager

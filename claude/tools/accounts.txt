@@ -1,0 +1,11 @@
+# Claude Code account config dirs — read by ~/.claude-tools/*.py (permissions, MCP, trust).
+# One absolute path per line; lines starting with # are ignored.
+# Add a new account with: ~/.claude-tools/add_account.sh <name>
+/Users/niclaskahlmeier/.claude
+/Users/niclaskahlmeier/.claude-kettner-1
+/Users/niclaskahlmeier/.claude-kettner-2
+/Users/niclaskahlmeier/.claude-kettner-3
+/Users/niclaskahlmeier/.claude-kettner-4
+/Users/niclaskahlmeier/.claude-kettner-5
+/Users/niclaskahlmeier/.claude-kettner-6
+/Users/niclaskahlmeier/.claude-kettner-7

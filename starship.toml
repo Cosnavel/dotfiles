@@ -3,7 +3,7 @@
 # =============================================================================
 
 # Timeout für Commands (schneller!)
-command_timeout = 200
+command_timeout = 1000
 
 # Scan timeout for large repos
 scan_timeout = 10

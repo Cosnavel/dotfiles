@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Auto-generated launcher for Claude Code account: /Users/niclaskahlmeier/.claude
+export CLAUDE_CONFIG_DIR="/Users/niclaskahlmeier/.claude"
+for b in "$HOME/.local/bin/claude" "$HOME/.claude/local/claude" "/opt/homebrew/bin/claude" "/usr/local/bin/claude"; do
+  [ -x "$b" ] && exec "$b" "$@"
+done
+exec claude "$@"

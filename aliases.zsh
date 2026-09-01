@@ -352,17 +352,31 @@ cz() {
 opendb() {
     [[ ! -f .env ]] && { echo "No .env file found."; return 1; }
 
-    local DB_CONNECTION DB_HOST DB_PORT DB_DATABASE DB_USERNAME DB_PASSWORD DB_URL
+    local DB_CONNECTION DB_HOST DB_PORT DB_DATABASE DB_USERNAME DB_PASSWORD
 
-    DB_CONNECTION=$(grep DB_CONNECTION .env | grep -v -e '^\s*#' | cut -d '=' -f 2-)
-    DB_HOST=$(grep DB_HOST .env | grep -v -e '^\s*#' | cut -d '=' -f 2-)
-    DB_PORT=$(grep DB_PORT .env | grep -v -e '^\s*#' | cut -d '=' -f 2-)
-    DB_DATABASE=$(grep DB_DATABASE .env | grep -v -e '^\s*#' | cut -d '=' -f 2-)
-    DB_USERNAME=$(grep DB_USERNAME .env | grep -v -e '^\s*#' | cut -d '=' -f 2-)
-    DB_PASSWORD=$(grep DB_PASSWORD .env | grep -v -e '^\s*#' | cut -d '=' -f 2-)
+    DB_CONNECTION=$(grep -E "^DB_CONNECTION=" .env | cut -d '=' -f 2-)
+    DB_HOST=$(grep -E "^DB_HOST=" .env | cut -d '=' -f 2-)
+    DB_PORT=$(grep -E "^DB_PORT=" .env | cut -d '=' -f 2-)
+    DB_DATABASE=$(grep -E "^DB_DATABASE=" .env | cut -d '=' -f 2-)
+    DB_USERNAME=$(grep -E "^DB_USERNAME=" .env | cut -d '=' -f 2-)
+    DB_PASSWORD=$(grep -E "^DB_PASSWORD=" .env | cut -d '=' -f 2-)
 
-    DB_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
-
-    echo "Opening ${DB_URL}"
-    open "$DB_URL"
+    if [[ "$DB_CONNECTION" == "sqlite" ]]; then
+        # For SQLite, open the database file directly
+        local DB_PATH="${DB_DATABASE:-database/database.sqlite}"
+        # Make path absolute if relative
+        [[ ! "$DB_PATH" = /* ]] && DB_PATH="$(pwd)/$DB_PATH"
+        
+        if [[ ! -f "$DB_PATH" ]]; then
+            echo "SQLite database not found: $DB_PATH"
+            return 1
+        fi
+        
+        echo "Opening SQLite: $DB_PATH"
+        open "$DB_PATH"
+    else
+        local DB_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
+        echo "Opening ${DB_URL}"
+        open "$DB_URL"
+    fi
 }

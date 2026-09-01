@@ -1,0 +1,27 @@
+---
+description: "Browser-Tests IMMER über Chrome DevTools MCP — niemals den Cursor-inline-Browser"
+alwaysApply: true
+---
+
+# Browser-Tests: Chrome DevTools MCP (Pflicht)
+
+Für **alle** Browser-Interaktionen (E2E-Verifikation, UI-Smoke-Tests, Screenshots,
+Konsolen-/Netzwerk-Checks, Formular-Flows) gilt:
+
+- **IMMER** den **Chrome DevTools MCP** Server (`chrome-devtools`) nutzen:
+  `new_page`/`navigate_page`, `take_snapshot`, `take_screenshot`, `click`, `fill`,
+  `fill_form`, `list_console_messages`, `list_network_requests`, `evaluate_script`, …
+- **NIEMALS** den Cursor-inline-Browser (`cursor-ide-browser` MCP: `browser_navigate`,
+  `browser_snapshot`, `browser_click`, …) verwenden — auch nicht als Fallback.
+- Das gilt auch für Subagents: `browser-use`-Subagents nicht verwenden, wenn sie den
+  inline Browser treiben würden. Browser-Aufgaben stattdessen selbst direkt über die
+  `chrome-devtools`-MCP-Tools ausführen oder dem Subagent explizit und ausschließlich
+  Chrome-DevTools-MCP-Tools vorgeben.
+
+## Typischer Ablauf
+
+1. `list_pages` → vorhandene Tabs prüfen; `new_page` mit der Ziel-URL (z. B.
+   `http://localhost:3000/...` oder die Herd-`.test`-Domain).
+2. `take_snapshot` für Struktur/UIDs, `take_screenshot` für visuelle Verifikation.
+3. Interaktionen über `click`/`fill`/`fill_form`/`press_key` mit den Snapshot-UIDs.
+4. Fehlerdiagnose über `list_console_messages` und `list_network_requests`.

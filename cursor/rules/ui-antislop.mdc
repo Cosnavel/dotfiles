@@ -1,0 +1,38 @@
+---
+description: "Anti-Slop-Regeln für sichtbare UI und Copy: KI-Verräter (Gedankenstrich, Platzhalternamen, Fake-Zahlen, Deko-Labels) und Pflicht-Checks für CTAs, Formulare und Motion. Relevant beim Schreiben oder Ändern sichtbarer Texte und Markup — egal ob Web-UI, Landingpage, HTML-Artefakt, Admin-Panel oder Print-Layout, in jedem Projekt."
+alwaysApply: false
+---
+
+# UI & Copy: Anti-Slop
+
+Gilt für **neu geschriebene oder geänderte** UI. Kein Auftrag, Bestandscode umzubauen: bestehende
+Komponenten und Muster haben weiter Vorrang (`AGENTS.md`).
+
+## Sichtbare Texte (DE und EN)
+
+- Kein Gedankenstrich (`—` / `–`) in sichtbaren Strings. Punkt, Komma, Doppelpunkt oder Klammer
+  stattdessen. Bindestrich `-` bleibt für Wortverbindungen und Bereiche (`2018-2026`, `40-80 g`).
+- Keine Platzhalter-Namen und -Marken: „Max Mustermann", „Acme", „Beispiel GmbH". Demo- und
+  Seed-Daten bekommen realistische deutsche Namen.
+- Keine erfundenen Präzisions-Zahlen (`99,9 %`, `4,1x`, `+312 %`). Zahlen kommen aus der API oder
+  sind explizit als Beispiel markiert.
+- Keine Füllverben: „Elevate", „nahtlos", „revolutionär", „Next-Gen". Konkret formulieren.
+- Regeln gelten für BEIDE Sprachen, also auch für den `en.js`-Eintrag (`multilingual.mdc`).
+
+## Deko, die nichts trägt
+
+- Keine Section-Nummern als Label (`01 · Vorteile`), keine Scroll-Hinweise („Scroll", „↓"), keine
+  Orts-/Zeit-/Wetter-Strips.
+- Farbige Status-Punkte nur bei echtem Zustand (Live-Stream an, Lagerstatus), nicht als Zierde.
+- Keine Pills oder Captions auf Bildern. Bildunterschrift steht unter dem Bild.
+- Keine `<div>`-Fake-Screenshots. Echtes Bild, echte Komponente oder nichts.
+
+## Pflicht-Checks vor „fertig"
+
+- CTA-Text passt am Desktop auf eine Zeile und hat gegen seinen Hintergrund WCAG-AA-Kontrast (4,5:1).
+- Formulare: Label über dem Feld, Fehlertext darunter. Placeholder ist nie das Label.
+- Ein Akzent und eine Radius-Skala pro Seite, nicht pro Sektion.
+- Neue Animationen nur auf `transform`/`opacity` und mit `prefers-reduced-motion`-Fallback.
+- Neue Vollhöhen-Sektionen mit `min-h-[100dvh]`, nicht `h-screen` (iOS-Adressleiste).
+- Neue Scroll-Effekte über IntersectionObserver oder GSAP ScrollTrigger, nicht über
+  `window.addEventListener('scroll')`.

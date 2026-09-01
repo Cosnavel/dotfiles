@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+export CLAUDE_CONFIG_DIR="/Users/niclaskahlmeier/.claude-nordicbarf"
+for b in "$HOME/.local/bin/claude" "$HOME/.claude/local/claude" "/opt/homebrew/bin/claude" "/usr/local/bin/claude"; do
+  [ -x "$b" ] && exec "$b" "$@"
+done
+exec claude "$@"

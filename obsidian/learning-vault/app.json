@@ -1,0 +1,16 @@
+{
+  "obsidianCss": false,
+  "promptDelete": false,
+  "communityPluginSortOrder": "download",
+  "legacyEditor": false,
+  "livePreview": true,
+  "attachmentFolderPath": "Attachments",
+  "showFrontmatter": false,
+  "pdfExportSettings": {
+    "includeName": true,
+    "pageSize": "Letter",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 100
+  }
+}

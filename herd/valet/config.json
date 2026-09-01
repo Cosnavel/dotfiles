@@ -1,0 +1,9 @@
+{
+    "tld": "test",
+    "share-tool": "expose",
+    "loopback": "127.0.0.1",
+    "paths": [
+        "/Users/niclaskahlmeier/Library/Application Support/Herd/config/valet/Sites",
+        "/Users/niclaskahlmeier/Herd/"
+    ]
+}

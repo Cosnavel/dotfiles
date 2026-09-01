@@ -1,0 +1,44 @@
+[user]
+	name = Cosnavel
+	email = 42392570+Cosnavel@users.noreply.github.com
+	# signingKey = 787A8AF40B6904FA
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIPDMaWefKCfvzbYPkF/eceILODSe8wshvMyFbvwhioa
+[core]
+    pager = delta --light
+	excludesfile = /Users/niclaskahlmeier/.dotfiles/.gitignore_global
+[delta]
+    plus-color = "#012800"
+    minus-color = "#340001"
+    syntax-theme = Monokai Extended
+    line-numbers = true
+    side-by-side = true
+    line-numbers-left-format = ""
+    line-numbers-right-format = "│ "
+[interactive]
+    diffFilter = delta --color-only
+#[diff]
+#    tool = vscode
+#[difftool "vscode"]
+#    cmd = code --wait --diff $LOCAL $REMOTE
+#[merge]
+#    tool = vscode
+#[mergetool "vscode"]
+#    cmd = code --wait $MERGED
+[init]
+	templatedir = /Users/niclaskahlmeier/.git-templates
+	defaultBranch = main
+[pull]
+	rebase = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[commit]
+	gpgsign = true
+[alias]
+	logs = log --show-signature
+[gpg]
+  format = ssh
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"

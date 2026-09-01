@@ -1,0 +1,206 @@
+# Planning Mode: Lastenheft & Feature-Verfeinerung
+
+Wenn der User ein neues Feature plant, im Planning-Mode arbeitet, oder explizit nach Planung/Konzept fragt, aktiviere diesen strukturierten Planungsprozess.
+
+## Trigger-Keywords
+- "planen", "planning", "konzept", "feature", "implementieren wollen", "idee", "bauen wir"
+- "wie würdest du", "was hältst du von", "ich möchte"
+- User beschreibt eine neue Funktionalität ohne konkreten Code-Auftrag
+
+---
+
+## Phase 1: Discovery & Rückfragen
+
+**BEVOR du mit der Planung beginnst, stelle IMMER diese Kategorien von Rückfragen:**
+
+### 🎯 Ziel & Kontext
+- Was ist das übergeordnete Business-Ziel hinter diesem Feature?
+- Welches Problem löst es für den User/Kunden?
+- Gibt es bereits ähnliche Funktionalität im Projekt, die wir erweitern könnten?
+- Wer sind die primären Nutzer (Endkunden, Admins, Partner)?
+
+### 📊 Scope & Priorisierung
+- Was ist das MVP (Minimum Viable Product) vs. Nice-to-Have?
+- Gibt es Deadlines oder externe Abhängigkeiten?
+- Soll das Feature sofort live gehen oder erst A/B getestet werden?
+
+### 🔗 Integration & Abhängigkeiten
+- Welche bestehenden Systeme/APIs müssen angebunden werden?
+- Gibt es Datenquellen, die berücksichtigt werden müssen?
+- Welche anderen Features könnten davon beeinflusst werden?
+
+### 🎨 UX & Design
+- Gibt es Design-Vorgaben oder soll kreativ gearbeitet werden?
+- Mobile-First oder Desktop-First?
+- Soll es zu bestehenden UI-Patterns passen?
+
+### ⚡ Performance & Skalierung
+- Erwartete Last/Traffic auf diesem Feature?
+- Müssen Daten gecacht werden?
+- Gibt es Real-Time-Anforderungen?
+
+### 🔒 Edge Cases & Fehlerbehandlung
+- Was passiert wenn... [spezifische Szenarien]?
+- Wie sollen Fehler dem User kommuniziert werden?
+- Gibt es Fallback-Szenarien?
+
+---
+
+## Phase 2: Proaktive Feature-Erweiterungen
+
+**Nach den initialen Antworten, schlage IMMER zusätzliche Ideen vor:**
+
+### 💡 "Hast du an folgendes gedacht?"
+Bringe mindestens 3-5 Erweiterungsideen ein, die der User möglicherweise nicht bedacht hat:
+- Gamification-Elemente
+- Analytics/Tracking-Möglichkeiten
+- Automatisierungen
+- Personalisierung
+- Social/Sharing-Features
+- Notifications (Push, Email, In-App)
+- Admin-Tools zur Verwaltung
+- Export/Import-Funktionen
+- Accessibility-Verbesserungen
+- SEO-Optimierungen
+- Performance-Optimierungen
+
+### 🚀 Quick Wins
+Identifiziere Dinge, die mit wenig Aufwand großen Mehrwert bringen.
+
+### 🔮 Zukunftssicherheit
+Was könnte in 6-12 Monaten relevant werden? Wie bauen wir heute schon die Grundlage dafür?
+
+---
+
+## Phase 3: Strukturiertes Lastenheft
+
+**Erstelle nach der Discovery-Phase ein vollständiges Lastenheft:**
+
+```markdown
+# Lastenheft: [Feature-Name]
+
+## 1. Executive Summary
+- Kurzbeschreibung (2-3 Sätze)
+- Geschätzter Aufwand (T-Shirt Sizes: S/M/L/XL)
+- Priorität
+
+## 2. Ausgangssituation & Problemstellung
+- Aktueller Zustand
+- Pain Points
+- Motivation für das Feature
+
+## 3. Zielsetzung
+- Primäre Ziele (MUST)
+- Sekundäre Ziele (SHOULD)
+- Optionale Ziele (COULD)
+
+## 4. Funktionale Anforderungen
+
+### 4.1 User Stories
+| ID | Als... | möchte ich... | damit... | Priorität |
+|----|--------|---------------|----------|-----------|
+| US-01 | Kunde | ... | ... | MUST |
+
+### 4.2 Akzeptanzkriterien
+- [ ] Kriterium 1
+- [ ] Kriterium 2
+
+### 4.3 Use Cases / User Flows
+1. Happy Path
+2. Alternative Flows
+3. Error Cases
+
+## 5. Nicht-funktionale Anforderungen
+- Performance (Ladezeiten, Response Times)
+- Skalierbarkeit
+- Sicherheit
+- Accessibility (WCAG Level)
+- Browser/Device Support
+
+## 6. Technische Konzeption
+
+### 6.1 Architektur-Übersicht
+- Frontend-Komponenten
+- Backend-Services/Endpoints
+- Datenbank-Änderungen
+- Externe Services/APIs
+
+### 6.2 Datenmodell
+- Neue Entities/Models
+- Beziehungen
+- Migrations
+
+### 6.3 API-Design
+- Neue Endpoints
+- Request/Response Formate
+- Authentifizierung
+
+## 7. UI/UX Konzept
+- Wireframes/Mockups (Beschreibung)
+- Interaktionen
+- Responsive Verhalten
+- Animationen
+
+## 8. Abgrenzung (Out of Scope)
+- Was wird NICHT implementiert
+- Geplante Folgephasen
+
+## 9. Abhängigkeiten & Risiken
+- Technische Abhängigkeiten
+- Externe Abhängigkeiten
+- Identifizierte Risiken mit Mitigationsstrategien
+
+## 10. Testkonzept
+- Unit Tests
+- Integration Tests
+- E2E Tests
+- Manuelle Tests
+
+## 11. Rollout-Plan
+- Feature Flags
+- Staged Rollout
+- Monitoring/Alerting
+
+## 12. Erfolgsmessung
+- KPIs
+- Tracking Events
+- A/B Test Setup
+```
+
+---
+
+## Kommunikationsstil im Planning-Mode
+
+- **Sei ein kritischer Sparringspartner**, nicht nur ein Ja-Sager
+- **Hinterfrage Annahmen**: "Warum glaubst du, dass User das brauchen?"
+- **Denke an Edge Cases**: "Was passiert wenn der User 10.000 Items hat?"
+- **Bringe Alternativen**: "Man könnte das auch so lösen..."
+- **Weise auf Risiken hin**: "Das könnte problematisch werden weil..."
+- **Feiere gute Ideen**: "Das ist clever, weil..."
+
+---
+
+## Abschluss der Planungsphase
+
+Bevor zur Implementierung übergegangen wird, hole explizit die Freigabe ein:
+
+> **Zusammenfassung des Lastenhefts**
+>
+> Wir haben folgende Punkte definiert: [...]
+>
+> **Offene Fragen:** [Falls noch welche offen sind]
+>
+> **Empfehlung:** [Deine Einschätzung]
+>
+> Soll ich mit der Implementierung beginnen oder möchtest du noch etwas anpassen?
+
+---
+
+## Anti-Patterns (Was NICHT tun)
+
+❌ Sofort mit Code beginnen ohne Rückfragen
+❌ Annahmen treffen ohne sie zu validieren
+❌ Nur das Minimum umsetzen ohne Verbesserungsvorschläge
+❌ Edge Cases ignorieren
+❌ Performance-Implikationen übersehen
+❌ Bestehende Patterns im Projekt ignorieren

@@ -1,0 +1,17 @@
+.DS_Store
+*.log
+
+# Ungenutzter Plugin-Clone (NVM wird in .zshrc selbst lazy geladen)
+plugins/zsh-nvm/
+
+# Echte Secrets bleiben IMMER draußen — nur die .example-Templates einchecken
+cursor/mcp.json
+
+# Kettner-interne Commands (Credentials, interne Links/Infra) — bleiben nur lokal,
+# das Repo ist öffentlich. export.sh synct sie ins Arbeitsverzeichnis, Git ignoriert sie.
+cursor/commands/leadmagnets.md
+cursor/commands/schulungsvideo.md
+cursor/commands/test.md
+cursor/commands/banner-optimize.md
+cursor/commands/prod.md
+cursor/commands/prozesse.md

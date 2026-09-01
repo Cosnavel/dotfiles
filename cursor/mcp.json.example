@@ -1,0 +1,35 @@
+{
+  "mcpServers": {
+    "context7": {
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "<REDACTED — eigenen Wert eintragen>"
+      }
+    },
+    "ray": {
+      "url": "http://localhost:2411/mcp"
+    },
+    "firecrawl": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "firecrawl-mcp"
+      ],
+      "env": {
+        "FIRECRAWL_API_KEY": "<REDACTED — eigenen Wert eintragen>"
+      }
+    },
+    "uidotsh": {
+      "url": "https://ui.sh/mcp?agent=cursor",
+      "headers": {
+        "Authorization": "<REDACTED — eigenen Wert eintragen>"
+      }
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": [
+        "chrome-devtools-mcp@latest"
+      ]
+    }
+  }
+}
